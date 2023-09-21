@@ -13,9 +13,9 @@ public class FirstPersonController : MonoBehaviour
 {
 
     //Player Variables
-    public float speed = 2.0f;
-    public float gravity = -10.0f;
-    public float jumpForce = 2.0f;
+    public float speed = 20.0f;
+    public float gravity = -50.0f;
+    public float jumpForce = 20.0f;
     
     
     //Movement and Looking
@@ -50,6 +50,7 @@ public class FirstPersonController : MonoBehaviour
     {
         grounded = characterController.isGrounded;
         MovePlayer();
+        Look();    
     }
 
 
@@ -79,14 +80,17 @@ public class FirstPersonController : MonoBehaviour
 
     public void Look()
     {
-        float xAmount = mouseMovement.x * Time.deltaTime;
-        float yAmount = mouseMovement.y * Time.deltaTime;
+        float xAmount = mouseMovement.y * Time.deltaTime;
+        float yAmount = mouseMovement.x * Time.deltaTime;
 
 
-        transform.Rotate(Vector3.up * mouseMovement * sensitivity * Time.deltaTime);
+        transform.Rotate(Vector3.up * mouseMovement.x * sensitivity * Time.deltaTime);
 
         cam_x_rotation -= xAmount;
         cam_x_rotation = Mathf.Clamp(cam_x_rotation, -90f, 90f);
+
+        //Sets camera's local rotation. Player will be able to look up and down
+        cameraLive.transform.localRotation = Quaternion.Euler(cam_x_rotation, 0, 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)
