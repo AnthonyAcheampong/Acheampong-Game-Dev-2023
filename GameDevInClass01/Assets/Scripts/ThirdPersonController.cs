@@ -84,7 +84,7 @@ public class ThirdPersonController : MonoBehaviour
 
         // What direction to face
 
-        var cam_position = new Vector3(camera.position.x, camera.position.y, camera.position.z);
+        var cam_position = new Vector3(camera.position.x, player.position.y, camera.position.z);
 
         Vector3 view_direction = player.position - cam_position;
 
@@ -92,7 +92,7 @@ public class ThirdPersonController : MonoBehaviour
 
 
         //set the direction
-        direction = orientation.right * move_input.x + orientation.up * move_input.y;
+        direction = orientation.right * move_input.x + orientation.forward * move_input.y;
         direction = direction.normalized;
 
         //Keyboard input
@@ -123,7 +123,7 @@ public class ThirdPersonController : MonoBehaviour
     public void Jump()
     {
 
-        if(IsOnGround())
+        if (!IsOnGround())
         {
             rigidbody.AddForce(Vector3.up * jump_force);
 
