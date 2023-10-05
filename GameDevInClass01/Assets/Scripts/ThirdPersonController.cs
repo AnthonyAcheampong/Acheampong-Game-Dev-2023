@@ -123,7 +123,7 @@ public class ThirdPersonController : MonoBehaviour
     public void Jump()
     {
 
-        if (!IsOnGround())
+        if (IsOnGround())
         {
             rigidbody.AddForce(Vector3.up * jump_force);
 
