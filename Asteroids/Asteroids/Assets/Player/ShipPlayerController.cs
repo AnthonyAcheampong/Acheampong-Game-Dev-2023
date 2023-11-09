@@ -46,6 +46,7 @@ public class ShipPlayerController : MonoBehaviour
        
         rigidbody = GetComponent<Rigidbody>();
 
+        //get planes from camera frustum
         camera_frustum = GeometryUtility.CalculateFrustumPlanes(camera);
 
     }
